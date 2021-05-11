@@ -1,5 +1,13 @@
 [
 	{
+		"label": "home",
+		"icon": "fas fa-house-night",
+		"id": "homet",
+		"allowFirstLocation": true,
+		"askIfOtherPassengers": false,
+		"isDropOffOrPickup": false
+	},
+	{
 		"label": "non-primary home",
 		"icon": "fas fa-house-night",
 		"id": "home",
@@ -12,6 +20,14 @@
 		"icon": "fas fa-building",
 		"id": "work",
 		"allowFirstLocation": false,
+		"askIfOtherPassengers": false,
+		"isDropOffOrPickup": false
+	},
+	{
+		"label": "work/work-related",
+		"icon": "fas fa-briefcase",
+		"id": "work",
+		"allowFirstLocation": true,
 		"askIfOtherPassengers": false,
 		"isDropOffOrPickup": false
 	},
@@ -40,6 +56,14 @@
 		"isDropOffOrPickup": false
 	},
 	{
+		"label": "restaurant or bar or coffee shop",
+		"icon": "fas fa-utensils",
+		"id": "bar",
+		"allowFirstLocation": false,
+		"askIfOtherPassengers": true,
+		"isDropOffOrPickup": false
+	},
+	{
 		"label": "restaurant, bar, coffee",
 		"icon": "fas fa-utensils",
 		"id": "restaurant",
@@ -56,6 +80,14 @@
 		"isDropOffOrPickup": false
 	},
 	{
+		"label": "visiting friends or family",
+		"icon": "fas fa-users",
+		"id": "visiting",
+		"allowFirstLocation": true,
+		"askIfOtherPassengers": true,
+		"isDropOffOrPickup": false
+	},
+	{
 		"label": "visiting friends, family",
 		"icon": "fas fa-users",
 		"id": "vsiting",
@@ -64,9 +96,25 @@
 		"isDropOffOrPickup": false
 	},
 	{
+		"label": "recreation or sports or leisure or arts",
+		"icon": "fas fa-hockey-sticks",
+		"id": "sports",
+		"allowFirstLocation": true,
+		"askIfOtherPassengers": true,
+		"isDropOffOrPickup": false
+	},
+	{
 		"label": "recreation, sports, leisure, arts",
 		"icon": "fas fa-hockey-sticks",
 		"id": "recreation",
+		"allowFirstLocation": true,
+		"askIfOtherPassengers": true,
+		"isDropOffOrPickup": false
+	},
+	{
+		"label": "worship and religion",
+		"icon": "fas fa-place-of-worship",
+		"id": "religion",
 		"allowFirstLocation": true,
 		"askIfOtherPassengers": true,
 		"isDropOffOrPickup": false
@@ -112,9 +160,25 @@
 		"isDropOffOrPickup": false
 	},
 	{
+		"label": "shopping and errands",
+		"icon": "fas fa-home",
+		"id": "errands",
+		"allowFirstLocation": false,
+		"askIfOtherPassengers": true,
+		"isDropOffOrPickup": false
+	},
+	{
 		"label": "shopping and errands (groceries, corner store, shopping center, gas station, etc.)",
 		"icon": "fas fa-home",
 		"id": "shopping",
+		"allowFirstLocation": false,
+		"askIfOtherPassengers": true,
+		"isDropOffOrPickup": false
+	},
+	{
+		"label": "services",
+		"icon": "fas fa-car-mechanic",
+		"id": "servicest",
 		"allowFirstLocation": false,
 		"askIfOtherPassengers": true,
 		"isDropOffOrPickup": false

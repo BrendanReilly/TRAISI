@@ -11,6 +11,7 @@ using Traisi.Data.Models.Interfaces;
 using Traisi.Data.Models.Questions;
 using Traisi.Data.Models.ResponseTypes;
 using Traisi.Data.Models.Surveys;
+using Traisi.Data.Models.Municipality;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -36,6 +37,12 @@ namespace Traisi.Data
         public DbSet<Shortcode> Shortcodes { get; set; }
         public DbSet<Groupcode> Groupcodes { get; set; }
         public DbSet<QuestionPart> QuestionParts { get; set; }
+
+        public DbSet<Local> Locals { get; set; }
+        public DbSet<Meta> Metas { get; set; }
+        public DbSet<Metropolitan> Metropolitans { get; set; }
+        public DbSet<Regional> Regionals { get; set; }
+        public DbSet<FSA> FSAs { get; set; }
 
         public DbSet<QuestionConditionalOperator> QuestionConditionalOperators { get; set; }
 

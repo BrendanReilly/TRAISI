@@ -1,5 +1,10 @@
 [
 	{
+		"label": "Car",
+		"icon": "fas fa-car",
+		"id": "car"
+	},
+	{
 		"label": "Car driving alone",
 		"icon": "fas fa-car",
 		"id": "car-driving-alone"
@@ -29,6 +34,11 @@
 		"label": "Car passenger (driver is a non-household member)",
 		"icon": "fas fa-car",
 		"id": "car-passenger-driver-none-household"
+	},
+	{
+		"label": "Transit",
+		"icon": "fal fa-bus",
+		"id": "transit"
 	},
 	{
 		"label": "Transit all way",
@@ -61,6 +71,11 @@
 		"id": "transit-schoolbus"
 	},
 	{
+		"label": "Bicycle",
+		"icon": "fas fa-biking",
+		"id": "bicycle"
+	},
+	{
 		"label": "Cycling (bikeshare)",
 		"icon": "fas fa-biking",
 		"id": "cycling-bikeshare"
@@ -74,6 +89,11 @@
 		"label": "Walk",
 		"icon": "fas fa-walking",
 		"id": "Walk"
+	},
+	{
+		"label": "Motorcycle",
+		"icon": "fas fa-motorcyclei",
+		"id": "motorcycle"
 	},
 	{
 		"label": "Motorcycle / Scooter",

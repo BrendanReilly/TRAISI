@@ -48,10 +48,9 @@ export class SurveyAnalyzeComponent implements OnInit {
 	public transitRoutesResults: any = [];
 	public locationResults: any = [];
 	public householdResults: any = [];
-	
+
 	//Question type tables
-	public questionTable:boolean = false;
-	
+	public questionTable: boolean = false;
 
 	//question type tables
 	public x: boolean = false;
@@ -63,15 +62,14 @@ export class SurveyAnalyzeComponent implements OnInit {
 		let url = '/api/SurveyAnalytics/' + this.surveyId;
 		this.httpObj.get(url).subscribe((resData: any[]) => {
 			this.questions = resData;
+			this.questions = this.questions.filter((item) => item.id != 133);
 		});
 		this.filterByQuestion();
 	}
 
 	public filterByCity() {
-		if (this.selectedRegion == '')
-			this.responses = this.actualResponses;
-		else
-			this.responses = this.actualResponses.filter(item => item.city == this.selectedRegion);
+		if (this.selectedRegion == '') this.responses = this.actualResponses;
+		else this.responses = this.actualResponses.filter((item) => item.city == this.selectedRegion);
 		if (this.selectedRegion == '') this.responses = this.actualResponses;
 		else this.responses = this.actualResponses.filter((item) => item.city == this.selectedRegion);
 
@@ -79,6 +77,16 @@ export class SurveyAnalyzeComponent implements OnInit {
 	}
 
 	public filterByQuestion() {
+		if (this.selectedQuestion == 'Select Question') {
+			this.serverData = [];
+			this.responses = [];
+			this.actualResponses = [];
+			this.completed = 0;
+			this.incomplete = 0;
+			this.questionResults = [];
+			return;
+		}
+
 		//api analytics controller url
 		this.questionTable = false;
 		this.questionResults = [];
@@ -87,7 +95,7 @@ export class SurveyAnalyzeComponent implements OnInit {
 			//Radio, Checkbox question type results
 			if (resData.questionTypeResults != undefined) {
 				this.questionTable = true;
- 				this.serverData = resData;
+				this.serverData = resData;
 				this.responses = resData.completedResponses;
 				this.actualResponses = resData.completedResponses;
 				this.completed = resData.totalComplete;
@@ -96,41 +104,41 @@ export class SurveyAnalyzeComponent implements OnInit {
 				this.handleResponses();
 			}
 			//Matrix question type results
-			else  if (resData.matrixResults != undefined) {
- 				var ar:any[] = [];
-				ar.push(  resData.matrixResults );
+			else if (resData.matrixResults != undefined) {
+				var ar: any[] = [];
+				ar.push(resData.matrixResults);
 				this.questionResults = ar;
-			} 
+			}
 			//Travel diary question type results
-			else  if (resData.travelDiaryResults != undefined) {
+			else if (resData.travelDiaryResults != undefined) {
 				this.questionTable = false;
-				var ar:any[] = [];
-				ar.push(  resData.travelDiaryResults );
+				var ar: any[] = [];
+				ar.push(resData.travelDiaryResults);
 				this.questionResults = ar;
-			} 
+			}
 			//Transit routes question type results
-			else  if (resData.transitRoutesResults != undefined) {
+			else if (resData.transitRoutesResults != undefined) {
 				this.questionTable = false;
-				var ar:any[] = [];
-				ar.push(  resData.transitRoutesResults );
+				var ar: any[] = [];
+				ar.push(resData.transitRoutesResults);
 				this.questionResults = ar;
 			}
 			//Location question type results
-			else  if (resData.locationResults != undefined) {
+			else if (resData.locationResults != undefined) {
 				this.questionTable = false;
-				var ar:any[] = [];
-				ar.push(  resData.locationResults );
+				var ar: any[] = [];
+				ar.push(resData.locationResults);
 				this.questionResults = ar;
-			} 
+			}
 			//Household question type results
-			else  if (resData.householdResults != undefined) {
+			else if (resData.householdResults != undefined) {
 				this.questionTable = false;
-				var ar:any[] = [];
-				ar.push(  resData.householdResults );
+				var ar: any[] = [];
+				ar.push(resData.householdResults);
 				this.questionResults = ar;
-			} 
-			//Added all question-type responses code 
-			//In case if any questions data is not found 
+			}
+			//Added all question-type responses code
+			//In case if any questions data is not found
 			else if (resData.matrixResults != undefined) {
 				this.x = false;
 				this.y = true;
@@ -139,7 +147,6 @@ export class SurveyAnalyzeComponent implements OnInit {
 			//I'll remove once all question-type responses code
 			//added to SurveyAnalyticsController
 			else {
-				alert('No question type results found in server');
 				this.serverData = [];
 				this.responses = [];
 				this.actualResponses = [];
@@ -161,7 +168,7 @@ export class SurveyAnalyzeComponent implements OnInit {
 			this.responses[i].compSurveyByCity = compSurveyByCity;
 			this.responses[i].incompSurveyByCity = incompSurveyByCity;
 			this.responses[i].percentage = Math.round(rPercent) + '%';
-			this.responses[i].pending = (100 - Math.round(rPercent)) + '%';
+			this.responses[i].pending = 100 - Math.round(rPercent) + '%';
 			this.responses[i].pending = 100 - Math.round(rPercent) + '%';
 
 			j++;

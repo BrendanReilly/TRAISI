@@ -1,30 +1,189 @@
-<!-- Date selection calendar with October and November 2017 months -->
+<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	/* Create two equal columns that floats next to each other */
+	.column {
+		float: left;
+		padding: 10px;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+
+	.container {
+		background: #232931;
+		width: 400px;
+		height: 160em;
+		margin: 0 auto;
+		position: relative;
+		margin-top: 2%;
+		box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
+	}
+
+	.c1 {
+		margin: 1em auto;
+		font-size: 1.2em;
+	}
+
+	.c1 a {
+		list-style: none;
+		padding: 5px;
+		color: white;
+		display: block;
+		transition: all 0.5s ease-in-out;
+	}
+
+	.rightbox {
+		padding: 0em 34rem 0em 0em;
+		height: 200%;
+	}
+
+	.rb-container {
+		font-family: 'PT Sans', sans-serif;
+		width: 50%;
+		margin: auto;
+		display: block;
+		position: relative;
+	}
+
+	.rb-container ul.rb {
+		margin: 1em 0;
+		padding: 0;
+		display: inline-block;
+	}
+
+	.rb-container ul.rb li {
+		list-style: none;
+		margin: auto;
+		margin-left: 1em;
+		min-height: 10px;
+		border-left: 2px dashed #fff;
+		padding: 0 0 30px 30px;
+		position: relative;
+	}
+
+	.rb-container ul.rb li:last-child {
+		border-left: 0;
+	}
+
+	.rb-container ul.rb li::before {
+		position: absolute;
+		left: -11px;
+		top: 0px;
+		content: ' ';
+		border: 8px solid rgba(255, 255, 255, 1);
+		border-radius: 500%;
+		background: #e90707;
+		height: 22px;
+		width: 22px;
+		transition: all 500ms ease-in-out;
+	}
+
+	.rb-container ul.rb li:hover::before {
+		border-color: #232931;
+		transition: all 1000ms ease-in-out;
+	}
+
+	ul.rb li .timestamp {
+		color: #50d890;
+		position: relative;
+		width: 100px;
+		font-size: 12px;
+	}
+
+	.item-title {
+		color: #fff;
+		width: 300px;
+		font-size: 12px;
+	}
+
+	.container-3 {
+		width: 50em;
+		vertical-align: left;
+		white-space: nowrap;
+		position: absolute;
+	}
+
+	input::placeholder {
+		padding: 5em 5em 1em 1em;
+		color: #50d890;
+	}
+</style>
+<!-- Date selection calendar with October, November 2017 months -->
 <div class="row" style="margin-left: 0.5rem; height: 2.5rem;">
-  <h5>Date Selection:</h5>
-  <input [(ngModel)] = "selectedDate" class="form-control" type="date" style="margin-left: 0.5rem; width: 10rem" (change) = "updateTripDate()" [min]="minDate" [max]="maxDate">
+	<h5>Date Selection:</h5>
+	<input
+		[(ngModel)]="selectedDate"
+		class="form-control"
+		type="date"
+		style="margin-left: 0.5rem; width: 10rem;"
+		(change)="updateTripDate()"
+		[min]="minDate"
+		[max]="maxDate"
+	/>
 </div>
 <br />
-<!-- Trip Information -->
+
 <div class="">
-  <h5>Trip Information: </h5>
-  <table width="750" border="1">
-    <tr>
-      <th>Trip No #</th>
-      <th>Departure Time</th>
-      <th>Mode</th>
-      <th>Purpose</th>
-      <th>Action</th>
-    </tr>
-    <tr *ngFor="let item of tripData; let i = index; ">
-      <td> <a href="javascript:void(0);"  (click)="gotoTripOnMap(i)">Trip_{{i + 1}}</a> </td>
-      <td>{{item["Departure Date"]}}</td>
-      <td>{{item.Mode}}</td>
-      <td>{{item.Purpose}}</td>
-      <td>
-        <a href="javascript:void(0);" (click)="onConfirmClick()">Confirm</a> <br />
-        <a href="javascript:void(0);">Modify</a>
-    </tr>
-  </table>
+	<div class="row">
+		<div class="column" style="background-color: #aaa; width: 40%; height: 180em;">
+			<h5 style="text-align: center;">Trip Timeline</h5>
+			<div class="container">
+				<div class="rightbox">
+					<div class="rb-container">
+						<ul class="rb">
+							<li class="rb-item" *ngFor="let item of tripData; let i = index">
+								<div class="timestamp">
+									<a
+										class="c1"
+										style="color: #50d890;"
+										href="javascript:void(0);"
+										(click)="gotoTripOnMap(i)"
+										>Trip_{{ i + 1 }}
+									</a>
+									<label class="item-title">Departure Time:</label>
+									<input
+										type="datetime-local"
+										[(ngModel)]="item['Departure Time']"
+										[min]="minDateTime"
+										[max]="maxDateTime"
+									/>
+								</div>
+
+								<div class="item-title">
+									<label class="item-title">Mode: </label>
+									<select style="width: 200px;" [(ngModel)]="item.Mode">
+										<option>Select mode</option>
+										<option *ngFor="let item of travelModeData">{{ item.label }}</option>
+									</select>
+									<label class="item-title">Purpose: </label>
+									<select style="width: 230px;" [(ngModel)]="item.Purpose">
+										<option>Select purpose</option>
+										<option *ngFor="let item of travelPurposeData">{{ item.label }}</option>
+									</select>
+									<div>
+										<a href="javascript:void(0);" style="color: tomato;" (click)="onConfirmClick(i)"
+											>Confirm
+										</a>
+										<input type="checkbox" [(ngModel)]="item.isDataValid" disabled />
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column" style="background-color: #bbb; height: 180em; width: 60%;">
+			<h5 style="text-align: center;">Trip Route Map</h5>
+			<div style="height: 600px;" id="map"></div>
+		</div>
+	</div> 
 </div>
 <br />
-<div style="height:500px;" id="map"></div>

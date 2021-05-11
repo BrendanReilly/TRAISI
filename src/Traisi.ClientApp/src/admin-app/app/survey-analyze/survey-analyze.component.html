@@ -27,6 +27,7 @@
                     <!-- Questions dropdown list -->
                     Select Question : <select [(ngModel)]="selectedQuestion" style="height: 1.5rem;"
                         (change)="filterByQuestion()">
+                        <option>Select Question</option>
                         <option *ngFor="let item of questions;" value="{{item.id}}">{{item.name}}</option>
                     </select>
                     <!-- Regions dropdown list-->
